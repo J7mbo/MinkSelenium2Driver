@@ -505,6 +505,14 @@ class Selenium2Driver extends CoreDriver
     /**
      * {@inheritdoc}
      */
+    public function setHtml($xpath, $html)
+    {
+        $this->executeJsOnXpath($xpath, sprintf('{{ELEMENT}}.innerHTML = "%s";', addslashes($html)));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getOuterHtml($xpath)
     {
         return $this->executeJsOnXpath($xpath, 'return {{ELEMENT}}.outerHTML;');
